@@ -6,4 +6,4 @@ pydantic>=1.8
 joblib
 numpy
 httpx
-
+pytest
