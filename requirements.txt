@@ -7,3 +7,5 @@ joblib
 numpy
 httpx
 pytest
+prometheus-fastapi-instrumentator
+

@@ -4,7 +4,13 @@ from typing import List
 from app.model import load_model
 from app.utils import preprocess_input
 
+# Import Prometheus instrumentator
+from prometheus_fastapi_instrumentator import Instrumentator
+
 app = FastAPI()
+
+# Attach Prometheus metrics
+Instrumentator().instrument(app).expose(app)
 
 model, encoder = load_model()
 
@@ -15,7 +21,6 @@ class HandLandmarks(BaseModel):
 def root():
     return {"message": "Hand Gesture API running"}
 
-
 @app.get("/health")
 def health_check():
     return {"status": "ok", "message": "API is healthy"}
@@ -23,7 +28,6 @@ def health_check():
 @app.get("/labels")
 def get_labels():
     return {"labels": list(encoder.classes_)}
-
 
 @app.post("/predict")
 def predict(data: HandLandmarks):
