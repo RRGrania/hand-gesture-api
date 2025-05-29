@@ -6,9 +6,10 @@ def test_load_model():
     assert encoder is not None
 
 def test_predict_gesture():
-    model, encoder = load_model()
-    sample_input = [0.0] * 63  # example dummy input with correct length
+    # sample input with correct feature size (63 here is your example)
+    sample_input = [0.0] * 63  
     prediction = predict_gesture(sample_input)
     assert isinstance(prediction, str)
-    known_labels = encoder.classes_.tolist()  # get all known labels from encoder
+    model, encoder = load_model()
+    known_labels = encoder.classes_.tolist()
     assert prediction in known_labels
