@@ -22,3 +22,12 @@ def test_predict_valid():
     json_response = response.json()
     assert "prediction" in json_response
     assert isinstance(json_response["prediction"], str)
+
+import pytest
+from unittest.mock import patch
+
+@pytest.fixture(autouse=True)
+def mock_load_model():
+    with patch('app.model.load_model') as mock_load:
+        mock_load.return_value = ('dummy_model', 'dummy_encoder')
+        yield
