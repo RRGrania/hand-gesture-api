@@ -21,4 +21,4 @@ def preprocess_input(landmarks: list):
     for col in cols:
         df_input[col] /= max_val
 
-    return df_input
+    return df_input.to_numpy()

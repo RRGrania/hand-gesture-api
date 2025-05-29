@@ -1,9 +1,12 @@
 import numpy as np
-from app.utils import preprocess_input  # adjust import if your utils file is named differently
+from app.utils import preprocess_input  # Adjust this import if needed
 
 def test_preprocess_input_valid():
     input_data = [0.1] * 63
     processed = preprocess_input(input_data)
-    # Assuming preprocess_input returns a numpy array shaped (1, 63)
-    assert isinstance(processed, np.ndarray)
-    assert processed.shape == (1, 63)
+    
+    # Check if the output is a numpy array
+    assert isinstance(processed, np.ndarray), "Output should be a NumPy array"
+    
+    # Check the shape of the output
+    assert processed.shape == (1, 63), f"Expected shape (1, 63), got {processed.shape}"
